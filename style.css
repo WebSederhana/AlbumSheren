@@ -1,0 +1,459 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.137),
+            rgba(255, 255, 255, 0.135)
+        ),
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    color: #333;
+}
+
+/* =========================
+   HEADER PROFIL
+========================= */
+
+.album-header {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 40px 0 35px;
+}
+
+
+/* Bagian profil */
+
+.profile {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+}
+
+
+/* Foto profil */
+
+.profile > img {
+    width: 110px;
+    height: 110px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid white;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.15);
+
+    flex-shrink: 0;
+}
+
+
+/* Bagian tulisan */
+
+.profile-info {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+/* Judul Album */
+
+.profile-info h1 {
+    font-size: 36px;
+
+    margin: 0 0 5px;
+
+    font-family: Georgia, serif;
+
+    color: #333;
+}
+
+
+/* Nama */
+
+.profile-info h2 {
+    font-size: 21px;
+
+    margin: 0 0 6px;
+
+    font-weight: 600;
+
+    color: #555;
+}
+
+
+/* Deskripsi */
+
+.profile-info p {
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #777;
+}
+
+
+/* =========================
+   TAMPILAN HP
+========================= */
+
+@media (max-width: 600px) {
+
+    .album-header {
+        width: 94%;
+
+        padding: 30px 0;
+    }
+
+    .profile {
+        gap: 15px;
+    }
+
+    .profile > img {
+        width: 85px;
+        height: 85px;
+    }
+
+    .profile-info h1 {
+        font-size: 27px;
+    }
+
+    .profile-info h2 {
+        font-size: 18px;
+    }
+
+    .profile-info p {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =========================
+   GALERI FOTO
+========================= */
+
+.gallery {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+
+    /* 3 foto dari kiri - tengah - kanan */
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+
+    padding-bottom: 60px;
+}
+
+
+/* Kotak foto */
+
+.photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: white;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+
+    cursor: pointer;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+
+/* Foto */
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.4s ease;
+}
+
+
+/* Efek ketika mouse diarahkan */
+
+.photo:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.photo:hover img {
+    transform: scale(1.06);
+}
+
+
+/* =========================
+   FOTO BESAR / LIGHTBOX
+========================= */
+
+.lightbox {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    padding: 25px;
+
+    animation: muncul 0.25s ease;
+}
+
+
+/* Foto yang sedang dipilih */
+
+.lightbox img {
+    max-width: 92%;
+    max-height: 90%;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.18);
+
+    animation: fotoMembesar 0.3s ease;
+}
+
+
+/* Animasi saat foto muncul */
+
+@keyframes muncul {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes fotoMembesar {
+
+    from {
+        transform: scale(0.75);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* Tombol X */
+
+.close {
+    position: absolute;
+
+    top: 18px;
+    right: 28px;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+    font-size: 48px;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+    z-index: 10000;
+
+    transition: transform 0.2s ease;
+}
+
+
+.close:hover {
+    transform: scale(1.15);
+}
+
+/* =========================
+   JAM DI SUDUT KANAN ATAS
+========================= */
+
+.album-header {
+    position: relative;
+}
+
+
+/* Kotak jam */
+
+.clock {
+    position: absolute;
+
+    top: 25px;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    text-align: right;
+}
+
+
+/* Angka jam */
+
+.clock span {
+    font-size: 24px;
+
+    font-weight: 600;
+
+    font-family: "Courier New", monospace;
+
+    letter-spacing: 2px;
+
+    color: #1219da;
+}
+
+
+/* Tulisan Waktu Indonesia */
+
+.clock small {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: #0b0a0a;
+}
+
+
+/* Tampilan HP */
+
+@media (max-width: 600px) {
+
+    .clock {
+        top: 15px;
+        right: 0;
+    }
+
+    .clock span {
+        font-size: 18px;
+    }
+
+    .clock small {
+        font-size: 10px;
+    }
+
+}
+
+/* =========================
+   PEMBATAS KELOMPOK FOTO
+========================= */
+
+.photo-section-title {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    margin-top: 30px;
+    margin-bottom: 5px;
+
+    gap: 18px;
+}
+
+
+/* Garis kiri dan kanan */
+
+.photo-section-title::before,
+.photo-section-title::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #ffffff;
+}
+
+
+/* Judul */
+
+.photo-section-title span {
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    color: #1a1919;
+
+    white-space: nowrap;
+
+    letter-spacing: 1px;
+}
+
+
+/* HP */
+
+@media (max-width: 600px) {
+
+    .photo-section-title {
+        gap: 10px;
+
+        margin-top: 20px;
+    }
+
+    .photo-section-title span {
+        font-size: 16px;
+    }
+
+}
